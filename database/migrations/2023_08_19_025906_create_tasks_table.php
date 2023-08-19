@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('content')->comment('タスクのコメント');
             $table->timestamps();
+
+            $table->foreignId('user_id')->constrained();
         });
     }
 
