@@ -10,15 +10,20 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $tasks = Task::all();
         $user = Auth::user();
 
         return view('task.index', ['tasks' => $tasks, 'user' => $user]);
-        
     }
 
-    public function storeTask(Request $request){
+    public function storeTask(Request $request)
+    {
+        Task::create([
+            'content' => $request->content,
+        ]);
         
+        return redirect()->route('store')->with('success', '成功');
     }
 }
